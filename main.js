@@ -1,6 +1,7 @@
 let form = document.getElementById("form");
 let search_bar = document.getElementById("search-bar");
 let results = document.getElementById("results");
+dayjs.extend(window.dayjs_plugin_utc);
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -86,30 +87,14 @@ let print_results = (res) => {
   `;
 };
 
-// /**
-//  * ! to convert the epoch timestamp to date
-//  * ? https://www.freeformatter.com/epoch-timestamp-to-date-converter.html
-//  */
+/**
+ * ! Note : the timezone provided is in seconds format
+ */
 
 let hour_converter = (input, timezone) => {
-  let time = new Date(input * 1000);
-  let adjustment = timezone / 60 / 60;
-
-  let a = new Date(input * 1000);
-  let utc = a.getTime() + a.getTimezoneOffset() * 60000;
-  let nd = new Date(utc + 3600000 * adjustment);
-  console.log(
-    nd.toLocaleString("en-US", {
-      hour: "numeric",
-      hour12: true,
-    })
-  );
-
-  return time.toLocaleString("en-US", {
-    hour: "numeric",
-    hour12: true,
-  });
+  return dayjs
+    .unix(input)
+    .utc()
+    .utcOffset(timezone / 3600)
+    .format("h : mm A");
 };
-
-console.log(dayjs.unix(1654729852));
-console.log(dayjs.unix(1654778667));
