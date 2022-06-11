@@ -63,8 +63,8 @@ let print_results = (res) => {
         </div>
         <div class="card-4">
           <i class="fs-2 bi bi-water"></i>
-          <span class="fs-6 fw-semibold">${main.humidity} hPa</span>
-          <span class="fw-lighter text-secondary">Humidity</span>
+          <span class="fs-6 fw-semibold">${main.pressure} hPa</span>
+          <span class="fw-lighter text-secondary">Pressure</span>
         </div>
         <div class="card-5">
         <i class="fs-2 bi bi-sunrise"></i>
